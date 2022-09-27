@@ -11,34 +11,43 @@ class Zene{
         this.#hossz=hossz;
     }
 
-    set title(cim){
-        this.#cim = cim;
+    get cim(){
+        return this.#cim;
     }
 
-    set length(hossz){
-        if(typeof hossz ==="number" && hossz > 0){
-            this.#hossz= hossz;
-        }else{
-            throw new Error("Rossz hossz paraméter");
+    get hossz(){
+        return this.#hossz;
+    }
+
+    static osszeadHossz(zenek){
+        let sum = 0;
+        for(let c of zenek){
+            sum += c.#hossz;
         }
     }
 }
 
 function katt(){
     console.log('nyom')
-    let title = document.getElementById('cim').textContent;
-    let length =parseInt(document.getElementById('hossz').textContent);
+    let title = document.getElementById('cim').value;
+    let length =parseInt(document.getElementById('hossz').value);
     let zene = new Zene(title,length);
     console.log(zene);
-    zenek.concat(zene);
-    for(let i = 0; i < zenek.length;i++){
-        document.getElementById('result').textContent = zenek[i];
-    }
+    zenek = [];
+    zenek.push(zene);
+
+    zenek.forEach(e =>{
+        let li = document.createElement("li");
+        li.innerText=e.cim + " "+e.hossz;
+        document.getElementById('result').appendChild(li);
+    });
     
+    let osszHossz = Zene.osszeadHossz(zenek);
+    console.log(osszHossz);
 }
 
 function init(){
-document.getElementById('postB'),addEventListener('click',katt);
+document.getElementById('postB').addEventListener('click',katt);
 }
 
 document.addEventListener('DOMContentLoaded',init);
