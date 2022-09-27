@@ -42,7 +42,7 @@ function katt(){
         document.getElementById('result').appendChild(li);
     });
     
-    let osszHossz = Zene.osszeadHossz(zenek);
+    let osszHossz = Zene.osszeadHossz(zene);
     console.log(osszHossz);
 }
 
